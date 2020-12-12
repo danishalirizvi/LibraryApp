@@ -1,1 +1,1 @@
-adasd
+[{"name":"A","quote":"A"}]

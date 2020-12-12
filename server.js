@@ -2,6 +2,12 @@ const express = require('express');
 const bodyParser= require('body-parser');
 const fs = require('fs');
 const app = express();
+const Joi = require('joi');
+
+const schema = Joi.object([{
+  name: Joi.string(),
+  quote: Joi.string()
+}])
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -19,17 +25,34 @@ app.post('/quotes', (req, res) => {
   var list = [];
   
   if(form.name != '' && form.quote != ''){
+
+
+      // const value = schema.validate({ username: 'abc'});
+      // console.log(value);
+
+      // if(value.error != undefined){
+      //   console.log('Invalid JSON')
+      // }
+      
+
     fs.readFile('file.txt', "UTF8", function (err, data) {
       if(err){console.log('Error Reading File!')}
-      console.log('C');
-      list = JSON.parse(data);
-      console.log('D');
+      console.log('A');
+      
+      console.log(schema.validate(data));
+      if(schema.validate(data).error != undefined){
+        console.log('B');
+        //list = JSON.parse(data);
+      }
+      
+      
       process(list);
     });
+
     function process(list){
-      console.log('A');
+      
       list.push(form);
-      console.log('B');
+      
       fs.writeFile('file.txt', JSON.stringify(list), function (err) {
           if (err) throw err;
             console.log('Saved!');
