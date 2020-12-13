@@ -1,15 +1,82 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>MY APP</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Library App -- Home</title>
+  <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+  <style>
+    #home {
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      font-size: 70px;
+      letter-spacing: -2px;
+      word-spacing: 3px;
+      color: #1C80FF;
+      font-weight: normal;
+      text-decoration: none solid rgb(68, 68, 68);
+      font-style: italic;
+      font-variant: small-caps;
+      text-transform: capitalize;
+    }
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script>
+
+    function books() {
+      console.log('books.html');
+      $.ajax({
+        type: 'POST',
+        url: 'http://localhost:3000/books'
+      });
+    }
+
+  </script>
 </head>
+
 <body>
-  <h1> May Node and Express be with you. </h1>
-  <form action="/quotes" method="POST">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding:1%;">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
+        aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" style="color: #1C80FF;">Library</a>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" type="button" onclick="books()">Books</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <div class="container" style="margin:auto;min-height:500px;">
+    <h1 id="home" style="text-align:center;padding:20%"> Welcome to the Library App </h1>
+  </div>
+
+
+
+
+
+
+  <!-- <form action="/quotes" method="POST">
     <input type="text" placeholder="name" name="name">
     <input type="text" placeholder="quote" name="quote">
     <button type="submit">Submit</button>
-  </form>
+  </form> -->
+  <script src="/bootstrap/js/bootstrap.js"></script>
+
 </body>
+
 </html>

@@ -4,6 +4,8 @@ const fs = require('fs');
 const app = express();
 const Joi = require('joi');
 
+app.use("/bootstrap", express.static('./bootstrap/'));
+
 const schema = Joi.object({
   name: Joi.string(),
   quote: Joi.string()
@@ -17,12 +19,18 @@ app.listen(3000, function () {
   console.log('listening on 3000')
 })
 
-app.post('/api/foo', function (req, res) {
-  res.redirect('/emptyFieldsError');
+
+app.post('/LEDon', function(req, res) {
+  console.log('LEDon button pressed!');
+  // Run your LED toggling code here
 });
 
+app.post('/books', function(req, res) {
+  console.log('LEDon button pressed!');
+  res.sendFile(__dirname + '/books.html');
+});
 
-app.get('/', (req, res) => {
+app.get('/home', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 })
 
