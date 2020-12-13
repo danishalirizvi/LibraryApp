@@ -4,10 +4,14 @@ const fs = require('fs');
 const app = express();
 const Joi = require('joi');
 
-const schema = Joi.object([{
+const schema = Joi.object({
   name: Joi.string(),
   quote: Joi.string()
-}])
+})
+
+
+const rules = Joi.array().items(schema);
+
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -35,18 +39,23 @@ app.post('/quotes', (req, res) => {
       // }
       
 
-    fs.readFile('file.txt', "UTF8", function (err, data) {
-      if(err){console.log('Error Reading File!')}
-      console.log('A');
-      
-      console.log(schema.validate(data));
-      if(schema.validate(data).error != undefined){
-        console.log('B');
-        //list = JSON.parse(data);
+    fs.readFile('file.json', "UTF8", function (err, data) {
+      if(err){console.log('Error Reading File!')}      
+      // console.log(schema.validate(data));
+      // if(schema.validate(data).error != undefined){
+      //   console.log('B');
+      try{
+        list = JSON.parse(data);
+        var test = rules.validate(list)
+        console.log(test);
+        console.log("Done")
+
+        process(list);
       }
+      catch(e){console.log('JSON not valid')}
+      // }
+      //var input = Joi.array().items(data)
       
-      
-      process(list);
     });
 
     function process(list){
