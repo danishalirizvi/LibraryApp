@@ -1,13 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>MY APP</title>
-</head>
-<body>
-  <h1> Fields are Empty</h1>
-  <form action="/" method="GET">
-    <button type="submit">Go Back</button>
-  </form>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>MY APP</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+  </head>
+  <body>
+    <h1>Fields are Empty</h1>
+    <form action="/" method="GET">
+      <button type="submit">Go Back</button>
+    </form>
+    <button id="button" onclick="proceed()">Back</button>
+    <script>
+      function proceed() {
+        $.post("/api/foo", function () {
+          console.log("Call Succeded");
+        });
+      }
+    </script>
+  </body>
 </html>
